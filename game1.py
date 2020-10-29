@@ -4,31 +4,29 @@ import sys
 import os
 
 name = input("\nWhat is your name?\n")
-words = ['python','java','php','javascript','computer','geeks','keyboard','laptop','headphones','hardware','software','msi','nvidia','intel','logitech','amd','playstation','xbox','nintendo','gamecube','ryzen','cpu','unity particle system']
+words = ['python','java','php','JavaScript','computer','geeks','keyboard','laptop','headphones','hardware','software']
 answer = input("Do you want to guess a word?\n")
 while answer == "Yes" or answer == "yes" or answer == "y" or answer == "Y":
     print("Good Luck " + name + "!")
     word = random.choice(words)
     print("Guess my word.")
     guesses = ''
-    final = ''
     turns = 10
     while turns > 0:
         failed = 0
         for char in word:
             if char in guesses:
-                print(char,end='')
-                final = final+char
+                print(char)
             else:
-                print("_",end='')
+                print("_")
                 failed += 1
-            if word in final:
+            if failed == 0:
                 print("You have won with", + turns, "guesses left.")
                 print("The word is:", word)
                 answer == input("Do you want to play again?")
                 if answer == "Yes" or answer == "yes" or answer == "y" or answer == "Y":
                     os.execl(sys.executable, sys.executable, *sys.argv) # completely restart program
-        guess = input("\nGuess a character: ") # This line was screwing up stuff for some reason so I had to do the line above ^ and completely restart the program. (Let's just say its one of those old arcade machines where you need to input your name for a high score every time.)
+        guess = input("Guess a character: ") # This line was screwing up stuff for some reason so I had to do the line above ^ and completely restart the program. (Let's just say its one of those old arcade machines where you need to input your name for a high score every time.)
         guesses += guess
         if guess not in word:
             turns -= 1
@@ -37,7 +35,7 @@ while answer == "Yes" or answer == "yes" or answer == "y" or answer == "Y":
             if turns == 0:
                 print("You have run out of guesses. You have failed.")
                 print("GAME OVER, You Lose.")
-                answer == input("\nDo you want to play again?")
+                answer == input("Do you want to play again?")
                 if answer == "Yes" or answer == "yes" or answer == "y" or answer == "Y":
                     break
 
